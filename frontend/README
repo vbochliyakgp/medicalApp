@@ -1,0 +1,128 @@
+# MedChat - Medical Audio Transcription App
+
+MedChat is a web application that allows healthcare professionals to record or upload patient audio descriptions of symptoms. The app transcribes the audio, translates it if needed, and generates a medical summary in professional terminology.
+
+## Features
+
+- Record audio directly in the browser
+- Upload audio files (WAV/MP3)
+- Automatic transcription using Groq's Whisper model
+- Language detection and translation to English
+- Medical context summarization using specialized language models
+- Clean, structured final summaries for healthcare professionals
+
+## Tech Stack
+
+### Backend
+- FastAPI
+- Groq API for transcription and translation
+- Hugging Face for specialized medical language models
+- Python 3.9+
+
+### Frontend
+- React 18
+- Vite
+- TailwindCSS
+- Axios for API communication
+
+## Setup Instructions
+
+### Prerequisites
+- Python 3.9+ with pip
+- Node.js 16+ with npm or yarn
+- Groq API key (for audio transcription)
+- Hugging Face API key (for medical models)
+
+### Backend Setup
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/medchat.git
+   cd medchat
+   ```
+
+2. Create and activate a virtual environment:
+   ```bash
+   python -m venv venv
+   source venv/bin/activate  # On Windows: venv\Scripts\activate
+   ```
+
+3. Install backend dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+4. Set up environment variables:
+   - Copy `.env-template` to `.env`
+   - Add your Groq and Hugging Face API keys to the `.env` file
+
+5. Start the FastAPI server:
+   ```bash
+   uvicorn main:app --reload
+   ```
+
+The backend will be running at http://localhost:8000
+
+### Frontend Setup
+
+1. Navigate to the frontend directory:
+   ```bash
+   cd frontend
+   ```
+
+2. Install dependencies:
+   ```bash
+   npm install
+   # or
+   yarn
+   ```
+
+3. Start the development server:
+   ```bash
+   npm run dev
+   # or
+   yarn dev
+   ```
+
+The frontend will be running at http://localhost:5173
+
+## API Endpoints
+
+- `POST /upload` - Upload an audio file
+- `GET /process/{file_id}` - Process an uploaded audio file
+- `GET /files` - List all uploaded audio files
+- `GET /health` - Health check endpoint
+
+## Project Structure
+
+```
+medchat/
+├── main.py               # FastAPI application
+├── process.py            # Audio processing pipeline
+├── requirements.txt      # Python dependencies
+├── .env                  # Environment variables (create from template)
+├── .env-template         # Template for environment variables
+├── uploads/              # Directory for uploaded audio files
+├── results/              # Directory for processed results
+└── frontend/            
+    ├── src/              # React source code
+    │   ├── components/   # Reusable components
+    │   ├── pages/        # Page components
+    │   ├── services/     # API services
+    │   ├── App.jsx       # Main application component
+    │   └── main.jsx      # Entry point
+    ├── public/           # Static assets
+    ├── index.html        # HTML template
+    ├── package.json      # Node.js dependencies
+    └── vite.config.js    # Vite configuration
+```
+
+## Notes
+
+- This application is for demonstration purposes and should be properly secured before production use
+- Audio files are stored locally in the `uploads` directory
+- The backend includes CORS settings that allow all origins for development - restrict this in production
+
+## License
+
+[MIT](LICENSE)
