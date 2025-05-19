@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    container_name: medchat-api
+    volumes:
+      - ./uploads:/app/uploads
+      - ./results:/app/results
+    ports:
+      - "8000:8000"
+    environment:
+      - GROQ_API_KEY=${GROQ_API_KEY}
+      - HF_API_KEY=${HF_API_KEY}
+    restart: unless-stopped

@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const API_URL = 'http://127.0.0.1:8000'  // Using Vite's proxy
+const API_URL = 'https://medicalapp-vp0t.onrender.com'  // Using Vite's proxy
 
 // Create an axios instance
 const api = axios.create({
